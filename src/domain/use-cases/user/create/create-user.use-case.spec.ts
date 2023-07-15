@@ -1,7 +1,8 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 
+import { ConflictException } from '@nestjs/common'
+
 import { CreateUserUseCase } from './create-user.use-case'
-import { ConflictError } from '../../../errors'
 import { User } from '../../../entities'
 import { Hasher, UserRepository } from '../../../interfaces'
 
@@ -30,7 +31,7 @@ describe('CreateUserUseCase', () => {
   })
 
   it('should throw a ConflictError if username and/or email already exists in the database', async () => {
-    const expectedError = new ConflictError([
+    const expectedError = new ConflictException([
       'username already exists in the database',
       'email already exists in the database',
     ])

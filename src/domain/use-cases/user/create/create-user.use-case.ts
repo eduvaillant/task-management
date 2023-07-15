@@ -1,6 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common'
+import { ConflictException, Inject, Injectable } from '@nestjs/common'
 
-import { ConflictError } from '../../../errors'
 import { User } from '../../../entities'
 import { Hasher, UserRepository } from '../../../interfaces'
 
@@ -25,7 +24,8 @@ export class CreateUserUseCase {
     password,
   }: CreateUserCommand): Promise<CreateUserOutput> {
     const conflictMessages = await this.checkConflicts(username, email)
-    if (conflictMessages.length > 0) throw new ConflictError(conflictMessages)
+    if (conflictMessages.length > 0)
+      throw new ConflictException(conflictMessages)
     const hashedPassword = await this.hasher.hash(password)
     const user = User.newUser(username, email, hashedPassword)
     await this.userRepository.create(user)
