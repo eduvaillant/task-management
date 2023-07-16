@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -14,6 +17,7 @@ import { CreateTaskDto, UpdateTaskDto } from '../dtos'
 import { CreateTaskUseCase } from 'src/domain/use-cases/task/create/create-task.use-case'
 import { ListTasksUseCase } from 'src/domain/use-cases/task/list/list-tasks.use-case'
 import { UpdateTaskUseCase } from 'src/domain/use-cases'
+import { DeleteTaskUseCase } from 'src/domain/use-cases/task/delete/delete-task.use-case'
 import { AuthGuard } from 'src/common/guards'
 import { ValidatePayloadExistsPipe } from 'src/common/pipes'
 
@@ -24,6 +28,7 @@ export class TaskController {
     private readonly createTaskUseCase: CreateTaskUseCase,
     private readonly listTasksUseCase: ListTasksUseCase,
     private readonly updateTasksUseCase: UpdateTaskUseCase,
+    private readonly deleteTaskUseCase: DeleteTaskUseCase,
   ) {}
 
   @Post()
@@ -47,5 +52,12 @@ export class TaskController {
   ) {
     const command = { ...updateTaskDto, userId: request.user.sub, id }
     return await this.updateTasksUseCase.execute(command)
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param('id') id: string, @Req() request) {
+    const command = { userId: request.user.sub, id }
+    await this.deleteTaskUseCase.execute(command)
   }
 }
