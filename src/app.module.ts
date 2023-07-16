@@ -17,6 +17,7 @@ import {
 import { BcryptAdapter } from './infra/adapters'
 import { TaskController, UserController } from './infra/http/controllers'
 import env from './common/config/env'
+import { DeleteTaskUseCase } from './domain/use-cases/task/delete/delete-task.use-case'
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import env from './common/config/env'
     CreateTaskUseCase,
     ListTasksUseCase,
     UpdateTaskUseCase,
+    DeleteTaskUseCase,
     LoginUseCase,
     { provide: 'UserRepository', useClass: PrismaUserRepository },
     { provide: 'TaskRepository', useClass: PrismaTaskRepository },
