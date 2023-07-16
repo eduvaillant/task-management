@@ -2,14 +2,11 @@ import { ConflictException, Inject, Injectable } from '@nestjs/common'
 
 import { User } from '../../../entities'
 import { Hasher, UserRepository } from '../../../interfaces'
-
-export type CreateUserCommand = {
-  username: string
-  email: string
-  password: string
-}
-
-export type CreateUserOutput = Omit<User, 'password'>
+import {
+  CreateUserCommand,
+  CreateUserOutput,
+  createUserOutputMapper,
+} from './create-category.dto'
 
 @Injectable()
 export class CreateUserUseCase {
@@ -29,13 +26,7 @@ export class CreateUserUseCase {
     const hashedPassword = await this.hasher.hash(password)
     const user = User.newUser(username, email, hashedPassword)
     await this.userRepository.create(user)
-    return {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    }
+    return createUserOutputMapper(user)
   }
 
   private async checkConflicts(

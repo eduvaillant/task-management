@@ -1,5 +1,4 @@
 import { MockProxy, mock } from 'jest-mock-extended'
-
 import { ConflictException } from '@nestjs/common'
 
 import { CreateUserUseCase } from './create-user.use-case'
