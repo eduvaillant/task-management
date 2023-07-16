@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { TaskStatus } from 'src/domain/enums'
+import { TaskStatus } from '../../../domain/enums'
 
 export type TaskProps = {
   id: string
@@ -42,7 +42,7 @@ export class Task {
     return new Task({
       id,
       title,
-      description,
+      description: description ?? TaskStatus.CREATED,
       dueDate,
       status,
       createdAt,
