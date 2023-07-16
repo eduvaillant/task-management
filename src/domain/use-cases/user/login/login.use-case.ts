@@ -1,16 +1,13 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common'
+import {
+  Inject,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 
 import { Hasher, UserRepository } from 'src/domain/interfaces'
-
-export type LoginUseCaseCommand = {
-  username: string
-  password: string
-}
-
-export type LoginUseCaseOutput = {
-  accessToken: string
-}
+import { LoginUseCaseCommand, LoginUseCaseOutput } from './login.dto'
 
 @Injectable()
 export class LoginUseCase {
@@ -24,13 +21,14 @@ export class LoginUseCase {
     password,
   }: LoginUseCaseCommand): Promise<LoginUseCaseOutput> {
     const user = await this.userRepository.findByUsername(username)
+    if (!user) throw new NotFoundException('user not found')
     const isValid = await this.hasher.compare(password, user.password)
-    if (!isValid) {
-      throw new UnauthorizedException()
-    }
-    const payload = { sub: user.id, username: user.username }
+    if (!isValid) throw new UnauthorizedException()
     return {
-      accessToken: await this.jwtService.signAsync(payload),
+      accessToken: await this.jwtService.signAsync({
+        sub: user.id,
+        username: user.username,
+      }),
     }
   }
 }

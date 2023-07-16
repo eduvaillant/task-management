@@ -1,4 +1,4 @@
-import { UnauthorizedException } from '@nestjs/common'
+import { NotFoundException, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { MockProxy, mock } from 'jest-mock-extended'
 
@@ -41,6 +41,16 @@ describe('LoginUseCase', () => {
     expect(mockedUserRepository.findByUsername).toHaveBeenCalledWith(
       command.username,
     )
+  })
+
+  it('should throw a NotFoundException if UserRepository.findByUsername() returns null', async () => {
+    const command = { username: 'any_username', password: '1234' }
+    mockedUserRepository.findByUsername.mockResolvedValueOnce(null)
+
+    await sut.execute(command).catch((error) => {
+      expect(mockedUserRepository.findByUsername).toBeCalledTimes(1)
+      expect(error).toBeInstanceOf(NotFoundException)
+    })
   })
 
   it('should call Hasher.compare() with correct params', async () => {
