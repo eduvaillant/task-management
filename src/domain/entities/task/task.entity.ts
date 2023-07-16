@@ -66,10 +66,10 @@ export class Task {
     status: TaskStatus,
     dueDate: Date,
   ): void {
-    this.title = title
-    this.description = description
-    this.status = status
-    this.dueDate = dueDate
+    this.title = title ?? this.title
+    this.description = description ?? this.description
+    this.status = status ?? this.status
+    this.dueDate = dueDate ?? this.dueDate
     this.updatedAt = new Date()
   }
 }
