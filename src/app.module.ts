@@ -12,6 +12,7 @@ import env from './common/config/env'
 import { TaskController } from './infra/http/controllers/task.controller'
 import { CreateTaskUseCase } from './domain/use-cases/task/create/create-task.use-case'
 import { PrismTaskRepository } from './infra/db/prisma/repositories/task.repository'
+import { ListTasksUseCase } from './domain/use-cases/task/list/list-tasks.use-case'
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PrismTaskRepository } from './infra/db/prisma/repositories/task.reposit
     PrismaHelper,
     CreateUserUseCase,
     CreateTaskUseCase,
+    ListTasksUseCase,
     LoginUseCase,
     { provide: 'UserRepository', useClass: PrismaUserRepository },
     { provide: 'TaskRepository', useClass: PrismTaskRepository },

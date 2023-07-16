@@ -29,7 +29,7 @@ export class PrismTaskRepository implements TaskRepository {
     const mappedTasks = dbTasks.map((dbTask) => {
       let taskProps
       switch (dbTask.status) {
-        case 'COMPLETED':
+        case 'CREATED':
           taskProps = { ...dbTask, status: TaskStatus.COMPLETED }
           break
         case 'IN_PROGRESS':
