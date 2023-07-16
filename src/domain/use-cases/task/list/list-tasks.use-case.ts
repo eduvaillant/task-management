@@ -10,7 +10,10 @@ export class ListTasksUseCase {
   ) {}
   async execute(command: ListTasksCommand): Promise<ListTasksOutput> {
     if (command.status) {
-      return await this.taskRepository.listByStatus(command.status)
+      return await this.taskRepository.listByStatus(
+        command.status,
+        command.userId,
+      )
     }
     return await this.taskRepository.list(command.userId)
   }
