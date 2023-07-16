@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { Task } from 'src/domain/entities'
+
+import { Task, TaskProps } from 'src/domain/entities'
 import { TaskRepository } from 'src/domain/interfaces'
 import { PrismaHelper } from '../helpers'
 
 @Injectable()
-export class PrismTaskRepository implements TaskRepository {
+export class PrismaTaskRepository implements TaskRepository {
   constructor(private prismaHelper: PrismaHelper) {}
 
   async create(task: Task): Promise<void> {
@@ -20,5 +21,10 @@ export class PrismTaskRepository implements TaskRepository {
         updatedAt: task.updatedAt,
       },
     })
+  }
+
+  async list(userId: string): Promise<Task[]> {
+    const dbTasks = await this.prismaHelper.task.findMany({ where: { userId } })
+    return dbTasks.map((dbTask) => Task.fromDb(dbTask as TaskProps))
   }
 }
