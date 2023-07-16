@@ -27,4 +27,24 @@ export class PrismaTaskRepository implements TaskRepository {
     const dbTasks = await this.prismaHelper.task.findMany({ where: { userId } })
     return dbTasks.map((dbTask) => Task.fromDb(dbTask as TaskProps))
   }
+
+  async findById(id: string): Promise<Task> {
+    const dbTask = await this.prismaHelper.task.findUnique({
+      where: { id },
+    })
+    return dbTask && Task.fromDb(dbTask as TaskProps)
+  }
+
+  async update(task: Task): Promise<void> {
+    await this.prismaHelper.task.update({
+      where: { id: task.id },
+      data: {
+        title: task.title,
+        description: task.description,
+        status: task.status,
+        dueDate: task.dueDate,
+        updatedAt: task.updatedAt,
+      },
+    })
+  }
 }

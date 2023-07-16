@@ -12,6 +12,7 @@ import {
   CreateUserUseCase,
   ListTasksUseCase,
   LoginUseCase,
+  UpdateTaskUseCase,
 } from './domain/use-cases'
 import { BcryptAdapter } from './infra/adapters'
 import { TaskController, UserController } from './infra/http/controllers'
@@ -31,6 +32,7 @@ import env from './common/config/env'
     CreateUserUseCase,
     CreateTaskUseCase,
     ListTasksUseCase,
+    UpdateTaskUseCase,
     LoginUseCase,
     { provide: 'UserRepository', useClass: PrismaUserRepository },
     { provide: 'TaskRepository', useClass: PrismaTaskRepository },
