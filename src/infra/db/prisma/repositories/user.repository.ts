@@ -21,14 +21,14 @@ export class PrismaUserRepository implements UserRepository {
   }
 
   async findByUsername(username: string): Promise<User> {
-    const dbUser = await this.prismaHelper.user.findFirst({
+    const dbUser = await this.prismaHelper.user.findUnique({
       where: { username },
     })
     return dbUser && User.fromDb(dbUser)
   }
 
   async findByEmail(email: string): Promise<User> {
-    const dbUser = await this.prismaHelper.user.findFirst({
+    const dbUser = await this.prismaHelper.user.findUnique({
       where: { email },
     })
     return dbUser && User.fromDb(dbUser)

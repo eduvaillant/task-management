@@ -1,9 +1,21 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+  UsePipes,
+} from '@nestjs/common'
 
-import { CreateTaskDto } from '../dtos'
+import { CreateTaskDto, UpdateTaskDto } from '../dtos'
 import { CreateTaskUseCase } from 'src/domain/use-cases/task/create/create-task.use-case'
 import { ListTasksUseCase } from 'src/domain/use-cases/task/list/list-tasks.use-case'
+import { UpdateTaskUseCase } from 'src/domain/use-cases'
 import { AuthGuard } from 'src/common/guards'
+import { ValidatePayloadExistsPipe } from 'src/common/pipes'
 
 @Controller('tasks')
 @UseGuards(AuthGuard)
@@ -11,6 +23,7 @@ export class TaskController {
   constructor(
     private readonly createTaskUseCase: CreateTaskUseCase,
     private readonly listTasksUseCase: ListTasksUseCase,
+    private readonly updateTasksUseCase: UpdateTaskUseCase,
   ) {}
 
   @Post()
@@ -23,5 +36,16 @@ export class TaskController {
   async list(@Req() request) {
     const command = { userId: request.user.sub }
     return await this.listTasksUseCase.execute(command)
+  }
+
+  @Patch(':id')
+  @UsePipes(ValidatePayloadExistsPipe)
+  async update(
+    @Body() updateTaskDto: UpdateTaskDto,
+    @Param('id') id: string,
+    @Req() request,
+  ) {
+    const command = { ...updateTaskDto, userId: request.user.sub, id }
+    return await this.updateTasksUseCase.execute(command)
   }
 }

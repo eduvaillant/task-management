@@ -1,15 +1,9 @@
-import {
-  IsDateString,
-  IsEnum,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-} from 'class-validator'
+import { IsDateString, IsEnum, IsOptional, IsString } from 'class-validator'
 
 import { TaskStatus } from 'src/domain/enums'
 
-export class CreateTaskDto {
-  @IsNotEmpty()
+export class UpdateTaskDto {
+  @IsOptional()
   @IsString()
   title: string
 
@@ -21,7 +15,7 @@ export class CreateTaskDto {
   @IsEnum(TaskStatus)
   status: TaskStatus
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsDateString()
   dueDate: Date
 }
