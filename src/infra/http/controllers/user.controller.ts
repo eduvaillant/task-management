@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common'
+
 import { CreateUserUseCase } from '../../../domain/use-cases/user/create/create-user.use-case'
-import { CreateUserDto } from '../dtos'
-import { LoginDto } from '../dtos/login.dto'
+import { CreateUserDto, LoginDto } from '../dtos'
 import { LoginUseCase } from 'src/domain/use-cases/user/login/login.use-case'
 
 @Controller()
