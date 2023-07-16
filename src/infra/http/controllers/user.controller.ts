@@ -4,15 +4,15 @@ import { CreateUserDto } from '../dtos'
 import { LoginDto } from '../dtos/login.dto'
 import { LoginUseCase } from 'src/domain/use-cases/user/login/login.use-case'
 
-@Controller('users')
+@Controller()
 export class UserController {
   constructor(
     private readonly createUserUseCase: CreateUserUseCase,
     private readonly loginUseCase: LoginUseCase,
   ) {}
 
-  @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  @Post('users')
+  async createUser(@Body() createUserDto: CreateUserDto) {
     return await this.createUserUseCase.execute(createUserDto)
   }
 
