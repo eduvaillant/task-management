@@ -2,11 +2,12 @@ import * as bcrypt from 'bcrypt'
 import { Injectable } from '@nestjs/common'
 
 import { Hasher } from 'src/domain/interfaces'
+import env from 'src/common/config/env'
 
 @Injectable()
 export class BcryptAdapter implements Hasher {
   async hash(data: string): Promise<string> {
-    return await bcrypt.hash(data, 10)
+    return await bcrypt.hash(data, env.hashSalt)
   }
 
   async compare(data: string, hash: string) {
