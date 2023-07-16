@@ -8,12 +8,13 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
   UseGuards,
   UsePipes,
 } from '@nestjs/common'
 
-import { CreateTaskDto, UpdateTaskDto } from '../dtos'
+import { CreateTaskDto, FilterTaskByStatusDto, UpdateTaskDto } from '../dtos'
 import { CreateTaskUseCase } from 'src/domain/use-cases/task/create/create-task.use-case'
 import { ListTasksUseCase } from 'src/domain/use-cases/task/list/list-tasks.use-case'
 import { UpdateTaskUseCase } from 'src/domain/use-cases'
@@ -38,8 +39,11 @@ export class TaskController {
   }
 
   @Get()
-  async list(@Req() request) {
+  async list(@Req() request, @Query() { status }: FilterTaskByStatusDto) {
     const command = { userId: request.user.sub }
+    if (status) {
+      command['status'] = status
+    }
     return await this.listTasksUseCase.execute(command)
   }
 
