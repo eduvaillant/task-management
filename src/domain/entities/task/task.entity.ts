@@ -47,9 +47,9 @@ export class Task {
     return new Task({
       id,
       title,
-      description: description ?? TaskStatus.CREATED,
+      description: description ?? '',
       dueDate,
-      status,
+      status: status ?? TaskStatus.CREATED,
       userId,
       createdAt,
       updatedAt,

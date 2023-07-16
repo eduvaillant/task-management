@@ -9,6 +9,9 @@ import { UserController } from './infra/http/controllers/user.controller'
 import { BcryptAdapter } from './infra/adapters'
 import { LoginUseCase } from './domain/use-cases/user/login/login.use-case'
 import env from './common/config/env'
+import { TaskController } from './infra/http/controllers/task.controller'
+import { CreateTaskUseCase } from './domain/use-cases/task/create/create-task.use-case'
+import { PrismTaskRepository } from './infra/db/prisma/repositories/task.repository'
 
 @Module({
   imports: [
@@ -22,11 +25,13 @@ import env from './common/config/env'
   providers: [
     PrismaHelper,
     CreateUserUseCase,
+    CreateTaskUseCase,
     LoginUseCase,
     { provide: 'UserRepository', useClass: PrismaUserRepository },
+    { provide: 'TaskRepository', useClass: PrismTaskRepository },
     { provide: 'Hasher', useClass: BcryptAdapter },
   ],
-  controllers: [UserController],
+  controllers: [UserController, TaskController],
   exports: ['UserRepository', 'Hasher'],
 })
 export class AppModule {}
