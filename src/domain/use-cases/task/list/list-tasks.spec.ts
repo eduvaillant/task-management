@@ -27,6 +27,24 @@ describe('ListTasksUseCase', () => {
     sut = new ListTasksUseCase(mockedTaskRepository)
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('should TaskRepository.listByStatus if status is command is not null', async () => {
+    const command = {
+      userId: randomUUID(),
+      status: TaskStatus.IN_PROGRESS,
+    }
+
+    await sut.execute(command)
+
+    expect(mockedTaskRepository.listByStatus).toHaveBeenCalledTimes(1)
+    expect(mockedTaskRepository.listByStatus).toHaveBeenCalledWith(
+      command.status,
+    )
+  })
+
   it('should call TaskRepository.list correctly', async () => {
     const command = {
       userId: randomUUID(),
