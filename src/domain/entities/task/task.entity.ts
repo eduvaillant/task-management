@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto'
+
 import { TaskStatus } from '../../../domain/enums'
 
 export type TaskProps = {
@@ -7,6 +8,7 @@ export type TaskProps = {
   description: string
   dueDate: Date
   status: TaskStatus
+  userId: string
   createdAt: Date
   updatedAt: Date
 }
@@ -19,6 +21,7 @@ export class Task {
   status: TaskStatus
   createdAt: Date
   updatedAt: Date
+  userId: string
 
   private constructor(props: TaskProps) {
     this.id = props.id
@@ -26,6 +29,7 @@ export class Task {
     this.description = props.description
     this.dueDate = props.dueDate
     this.status = props.status
+    this.userId = props.userId
     this.createdAt = props.createdAt
     this.updatedAt = props.updatedAt
   }
@@ -35,6 +39,7 @@ export class Task {
     description: string,
     dueDate: Date,
     status: TaskStatus,
+    userId: string,
   ): Task {
     const id = randomUUID()
     const createdAt = new Date()
@@ -45,6 +50,7 @@ export class Task {
       description: description ?? TaskStatus.CREATED,
       dueDate,
       status,
+      userId,
       createdAt,
       updatedAt,
     })

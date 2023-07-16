@@ -14,8 +14,9 @@ export class CreateTaskUseCase {
     description,
     dueDate,
     status,
+    userId,
   }: CreateTaskCommand): Promise<CreateTaskOutput> {
-    const task = Task.newTask(title, description, dueDate, status)
+    const task = Task.newTask(title, description, dueDate, status, userId)
     await this.taskRepository.create(task)
     return task
   }

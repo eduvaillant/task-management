@@ -1,5 +1,6 @@
 import { Task } from './task.entity'
 import { TaskStatus } from '../../../domain/enums'
+import { randomUUID } from 'crypto'
 
 describe('Task', () => {
   it('should instantiate a Task when call newTask with valid params', () => {
@@ -7,18 +8,21 @@ describe('Task', () => {
     const expectedDescription = 'any_valid_description'
     const expectedStatus = TaskStatus.CREATED
     const expectedDueDate = new Date()
+    const expectedUserId = randomUUID()
 
     const actualTask = Task.newTask(
       expectedTitle,
       expectedDescription,
       expectedDueDate,
       expectedStatus,
+      expectedUserId,
     )
 
     expect(actualTask.id).toBeDefined()
     expect(actualTask.title).toBe(expectedTitle)
     expect(actualTask.description).toBe(expectedDescription)
     expect(actualTask.status).toBe(expectedStatus)
+    expect(actualTask.userId).toBe(expectedUserId)
     expect(actualTask.dueDate).toBe(expectedDueDate)
     expect(actualTask.createdAt).toBeDefined()
     expect(actualTask.updatedAt).toBeDefined()
@@ -32,6 +36,7 @@ describe('Task', () => {
     const expectedDueDate = new Date()
     const expectedCreatedAt = new Date()
     const expectedUpdatedAt = new Date()
+    const expectedUserId = randomUUID()
 
     const actualTask = Task.fromDb({
       id: expectedId,
@@ -41,12 +46,14 @@ describe('Task', () => {
       dueDate: expectedDueDate,
       createdAt: expectedCreatedAt,
       updatedAt: expectedUpdatedAt,
+      userId: expectedUserId,
     })
 
     expect(actualTask.id).toBeDefined()
     expect(actualTask.title).toBe(expectedTitle)
     expect(actualTask.description).toBe(expectedDescription)
     expect(actualTask.status).toBe(expectedStatus)
+    expect(actualTask.userId).toBe(expectedUserId)
     expect(actualTask.dueDate).toBe(expectedDueDate)
     expect(actualTask.createdAt).toBe(expectedCreatedAt)
     expect(actualTask.updatedAt).toBe(expectedUpdatedAt)
@@ -57,12 +64,14 @@ describe('Task', () => {
     const expectedDescription = 'any_updated_description'
     const expectedStatus = TaskStatus.CREATED
     const expectedDueDate = new Date()
+    const expectedUserId = randomUUID()
 
     const actualTask = Task.newTask(
       'any_valid_title',
       'any_valid_description',
       new Date(),
       TaskStatus.COMPLETED,
+      expectedUserId,
     )
     actualTask.update(
       expectedTitle,
@@ -75,5 +84,6 @@ describe('Task', () => {
     expect(actualTask.description).toBe(expectedDescription)
     expect(actualTask.status).toBe(expectedStatus)
     expect(actualTask.dueDate).toBe(expectedDueDate)
+    expect(actualTask.userId).toBe(expectedUserId)
   })
 })

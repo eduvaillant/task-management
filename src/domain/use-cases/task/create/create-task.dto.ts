@@ -6,6 +6,7 @@ export type CreateTaskCommand = {
   description: string
   dueDate: Date
   status: TaskStatus
+  userId: string
 }
 
 export type CreateTaskOutput = Omit<Task, 'update'>

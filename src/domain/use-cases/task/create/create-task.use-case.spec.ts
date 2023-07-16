@@ -4,6 +4,7 @@ import { CreateTaskUseCase } from './create-task.use-case'
 import { TaskRepository } from '../../../interfaces'
 import { Task } from '../../../entities'
 import { TaskStatus } from '../../../enums'
+import { randomUUID } from 'crypto'
 
 describe('CreateTaskUseCase', () => {
   let sut: CreateTaskUseCase
@@ -17,6 +18,7 @@ describe('CreateTaskUseCase', () => {
       'any_description',
       new Date(),
       TaskStatus.CREATED,
+      randomUUID(),
     )
     jest.spyOn(Task, 'newTask').mockReturnValue(fakeTask)
   })
@@ -31,6 +33,7 @@ describe('CreateTaskUseCase', () => {
       description: 'any_description',
       dueDate: new Date(),
       status: TaskStatus.CREATED,
+      userId: randomUUID(),
     }
 
     await sut.execute(command)
@@ -46,6 +49,7 @@ describe('CreateTaskUseCase', () => {
       description: 'any_description',
       dueDate: new Date(),
       status: TaskStatus.CREATED,
+      userId: randomUUID(),
     }
 
     const actualTask = await sut.execute(command)
