@@ -1,4 +1,4 @@
-import { ForbiddenException } from '@nestjs/common'
+import { ForbiddenException, NotFoundException } from '@nestjs/common'
 import { MockProxy, mock } from 'jest-mock-extended'
 import { randomUUID } from 'crypto'
 
@@ -47,6 +47,21 @@ describe('UpdateTaskUseCase', () => {
 
     expect(mockedTaskRepository.findById).toBeCalledTimes(1)
     expect(mockedTaskRepository.findById).toHaveBeenCalledWith(command.id)
+  })
+
+  it('should throw a NotFoundException if no task was found', async () => {
+    const command = {
+      id: randomUUID(),
+      title: 'updated_title',
+      description: 'updated_description',
+      dueDate: new Date(),
+      userId: randomUUID(),
+    }
+    mockedTaskRepository.findById.mockResolvedValueOnce(null)
+
+    await sut.execute(command).catch((error) => {
+      expect(error).toBeInstanceOf(NotFoundException)
+    })
   })
 
   it('should throw a ForbiddenException if User is not the owner of the task', async () => {
