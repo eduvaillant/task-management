@@ -1,2 +1,2 @@
 export * from './task.repository'
-export * from './user.repository'
+export * from './user/user.repository'
