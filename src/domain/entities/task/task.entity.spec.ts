@@ -6,7 +6,7 @@ describe('Task', () => {
   it('should instantiate a Task when call newTask with valid params', () => {
     const expectedTitle = 'any_valid_title'
     const expectedDescription = 'any_valid_description'
-    const expectedStatus = TaskStatus.CREATED
+    const expectedStatus = TaskStatus.PENDING
     const expectedDueDate = new Date()
     const expectedUserId = randomUUID()
 
@@ -32,7 +32,7 @@ describe('Task', () => {
     const expectedId = 'any_id'
     const expectedTitle = 'any_valid_title'
     const expectedDescription = 'any_valid_description'
-    const expectedStatus = TaskStatus.CREATED
+    const expectedStatus = TaskStatus.PENDING
     const expectedDueDate = new Date()
     const expectedCreatedAt = new Date()
     const expectedUpdatedAt = new Date()
@@ -62,7 +62,7 @@ describe('Task', () => {
   it('should update title and/or description and/or dueDate and/or status when call update()', () => {
     const expectedTitle = 'any_updated_title'
     const expectedDescription = 'any_updated_description'
-    const expectedStatus = TaskStatus.CREATED
+    const expectedStatus = TaskStatus.PENDING
     const expectedDueDate = new Date()
     const expectedUserId = randomUUID()
 

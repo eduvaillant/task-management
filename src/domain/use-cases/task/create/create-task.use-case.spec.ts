@@ -17,7 +17,7 @@ describe('CreateTaskUseCase', () => {
       'any_title',
       'any_description',
       new Date(),
-      TaskStatus.CREATED,
+      TaskStatus.PENDING,
       randomUUID(),
     )
     jest.spyOn(Task, 'newTask').mockReturnValue(fakeTask)
@@ -32,7 +32,7 @@ describe('CreateTaskUseCase', () => {
       title: 'any_title',
       description: 'any_description',
       dueDate: new Date(),
-      status: TaskStatus.CREATED,
+      status: TaskStatus.PENDING,
       userId: randomUUID(),
     }
 
@@ -48,7 +48,7 @@ describe('CreateTaskUseCase', () => {
       title: 'any_title',
       description: 'any_description',
       dueDate: new Date(),
-      status: TaskStatus.CREATED,
+      status: TaskStatus.PENDING,
       userId: randomUUID(),
     }
 

@@ -17,7 +17,7 @@ describe('ListTasksUseCase', () => {
       'any_title',
       'any_description',
       new Date(),
-      TaskStatus.CREATED,
+      TaskStatus.PENDING,
       randomUUID(),
     )
     mockedTaskRepository.list.mockResolvedValue([fakeTask])
