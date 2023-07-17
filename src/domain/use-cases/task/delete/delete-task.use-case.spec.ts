@@ -3,9 +3,9 @@ import { MockProxy, mock } from 'jest-mock-extended'
 import { randomUUID } from 'crypto'
 
 import { DeleteTaskUseCase } from './delete-task.use-case'
-import { TaskRepository } from '../../../interfaces'
-import { Task } from '../../../entities'
-import { TaskStatus } from '../../../enums'
+import { TaskRepository } from '@/domain/interfaces'
+import { Task } from '@/domain/entities'
+import { TaskStatus } from '@/domain/enums'
 
 describe('DeleteTaskUseCase', () => {
   let sut: DeleteTaskUseCase

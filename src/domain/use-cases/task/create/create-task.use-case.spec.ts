@@ -2,9 +2,9 @@ import { randomUUID } from 'crypto'
 import { MockProxy, mock } from 'jest-mock-extended'
 
 import { CreateTaskUseCase } from './create-task.use-case'
-import { TaskRepository } from '../../../interfaces'
-import { Task } from '../../../entities'
-import { TaskStatus } from '../../../enums'
+import { TaskRepository } from '@/domain/interfaces'
+import { Task } from '@/domain/entities'
+import { TaskStatus } from '@/domain/enums'
 
 describe('CreateTaskUseCase', () => {
   let sut: CreateTaskUseCase

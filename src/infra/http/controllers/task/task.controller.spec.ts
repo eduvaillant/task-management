@@ -1,15 +1,15 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 import { randomUUID } from 'crypto'
 
+import { TaskController } from './task.controller'
 import {
   CreateTaskUseCase,
   DeleteTaskUseCase,
   ListTasksUseCase,
   UpdateTaskUseCase,
-} from '../../../../domain/use-cases'
-import { TaskController } from './task.controller'
-import { Task } from '../../../../domain/entities'
-import { TaskStatus } from '../../../../domain/enums'
+} from '@/domain/use-cases'
+import { Task } from '@/domain/entities'
+import { TaskStatus } from '@/domain/enums'
 
 describe('TaskController', () => {
   let sut: TaskController

@@ -14,8 +14,8 @@ import {
   CreateUserOutputDto,
   LoginDto,
   LoginOutputDto,
-} from '../../dtos'
-import { CreateUserUseCase, LoginUseCase } from '../../../../domain/use-cases'
+} from '@/infra/http/dtos'
+import { CreateUserUseCase, LoginUseCase } from '@/domain/use-cases'
 
 @Controller()
 export class UserController {

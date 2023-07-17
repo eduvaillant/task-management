@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 
-import { Hasher, UserRepository } from '../../../interfaces'
 import { LoginUseCaseCommand, LoginUseCaseOutput } from './login.dto'
+import { Hasher, UserRepository } from '@/domain/interfaces'
 
 @Injectable()
 export class LoginUseCase {

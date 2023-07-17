@@ -1,5 +1,5 @@
-import { Task } from 'src/domain/entities'
-import { TaskStatus } from 'src/domain/enums'
+import { Task } from '@/domain/entities'
+import { TaskStatus } from '@/domain/enums'
 
 export type UpdateTaskCommand = {
   id: string

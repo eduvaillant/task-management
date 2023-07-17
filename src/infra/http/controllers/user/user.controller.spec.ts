@@ -1,8 +1,8 @@
 import { MockProxy, mock } from 'jest-mock-extended'
 
 import { UserController } from './user.controller'
-import { CreateUserUseCase, LoginUseCase } from '../../../../domain/use-cases'
-import { User } from '../../../../domain/entities'
+import { CreateUserUseCase, LoginUseCase } from '@/domain/use-cases'
+import { User } from '@/domain/entities'
 
 describe('UserController', () => {
   let sut: UserController

@@ -2,7 +2,7 @@ import { MockProxy, mock, mockReset } from 'jest-mock-extended'
 import { PrismaClient } from '@prisma/client'
 
 import { PrismaUserRepository } from './user.repository'
-import { User } from '../../../../../domain/entities'
+import { User } from '@/domain/entities'
 
 describe('PrismaUserRepository', () => {
   let sut: PrismaUserRepository

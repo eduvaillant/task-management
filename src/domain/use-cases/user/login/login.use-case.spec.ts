@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt'
 import { MockProxy, mock } from 'jest-mock-extended'
 
 import { LoginUseCase } from './login.use-case'
-import { User } from '../../../entities'
-import { Hasher, UserRepository } from '../../../interfaces'
+import { User } from '@/domain/entities'
+import { Hasher, UserRepository } from '@/domain/interfaces'
 
 describe('LoginUseCase', () => {
   let sut: LoginUseCase

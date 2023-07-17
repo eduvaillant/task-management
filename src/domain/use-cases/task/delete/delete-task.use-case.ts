@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common'
 
 import { DeleteTaskCommand } from './delete-task.dto'
-import { TaskRepository } from '../../../interfaces'
+import { TaskRepository } from '@/domain/interfaces'
 
 @Injectable()
 export class DeleteTaskUseCase {

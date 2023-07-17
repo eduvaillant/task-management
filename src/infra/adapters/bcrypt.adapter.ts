@@ -1,8 +1,8 @@
-import * as bcrypt from 'bcrypt'
 import { Injectable } from '@nestjs/common'
+import * as bcrypt from 'bcrypt'
 
-import { Hasher } from 'src/domain/interfaces'
-import env from 'src/config/env'
+import { Hasher } from '@/domain/interfaces'
+import env from '@/config/env'
 
 @Injectable()
 export class BcryptAdapter implements Hasher {

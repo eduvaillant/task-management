@@ -1,10 +1,10 @@
-import { MockProxy, mock, mockReset } from 'jest-mock-extended'
 import { PrismaClient } from '@prisma/client'
+import { MockProxy, mock, mockReset } from 'jest-mock-extended'
 import { randomUUID } from 'crypto'
 
 import { PrismaTaskRepository } from './task.repository'
-import { Task } from '../../../../../domain/entities'
-import { TaskStatus } from '../../../../../domain/enums'
+import { Task } from '@/domain/entities'
+import { TaskStatus } from '@/domain/enums'
 
 describe('PrismaTaskRepository', () => {
   let sut: PrismaTaskRepository

@@ -1,9 +1,14 @@
 require('module-alias/register')
+import { addAlias } from 'module-alias'
+import { resolve } from 'path'
+
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 
 import { AppModule } from './app.module'
+
+addAlias('@', resolve(process.env.TS_NODE_DEV === undefined ? 'dist' : 'src'))
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
