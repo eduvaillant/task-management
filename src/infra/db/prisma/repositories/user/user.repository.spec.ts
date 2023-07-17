@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import { PrismaUserRepository } from './user.repository'
 import { User } from '../../../../../domain/entities'
 
-describe('UserRepository', () => {
+describe('PrismaUserRepository', () => {
   let sut: PrismaUserRepository
   let mockedPrismaHelper: any
   let fakeUser: User
@@ -17,7 +17,7 @@ describe('UserRepository', () => {
     )
     mockedPrismaHelper = mock()
     const userPrismaMock: MockProxy<
-      Pick<PrismaClient['user'], 'findUnique' | 'create' | 'update'>
+      Pick<PrismaClient['user'], 'findUnique' | 'create'>
     > = mock()
     mockedPrismaHelper['user'] = userPrismaMock
   })
