@@ -37,7 +37,7 @@ describe('PrismaUserRepository', () => {
 
       await sut.create(fakeUser)
 
-      expect(mockedPrismaHelper.user.create).toHaveReturnedTimes(1)
+      expect(mockedPrismaHelper.user.create).toHaveBeenCalledTimes(1)
       expect(mockedPrismaHelper.user.create).toHaveBeenCalledWith(expectedInput)
     })
 
@@ -59,7 +59,7 @@ describe('PrismaUserRepository', () => {
 
       await sut.findByEmail(email)
 
-      expect(mockedPrismaHelper.user.findUnique).toHaveReturnedTimes(1)
+      expect(mockedPrismaHelper.user.findUnique).toHaveBeenCalledTimes(1)
       expect(mockedPrismaHelper.user.findUnique).toHaveBeenCalledWith(
         expectedInput,
       )
@@ -91,7 +91,7 @@ describe('PrismaUserRepository', () => {
 
       await sut.findByUsername(username)
 
-      expect(mockedPrismaHelper.user.findUnique).toHaveReturnedTimes(1)
+      expect(mockedPrismaHelper.user.findUnique).toHaveBeenCalledTimes(1)
       expect(mockedPrismaHelper.user.findUnique).toHaveBeenCalledWith(
         expectedInput,
       )
