@@ -1,73 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Task Management
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Visão Geral
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+O sistema permite que os usuários criem, leiam, atualizem e excluam tarefas. Cada tarefa possui um título, uma descrição, uma data de conclusão e um status (pendente, em andamento ou concluída). Os usuários podem se cadastrar, fazer login e gerenciar suas próprias tarefas.
 
-## Description
+## Tecnologias Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- NestJS
+- Prisma
+- Jest
+- Postgres
+- Docker
+- Docker Compose
+- Github Actions
 
-## Installation
+## Funcionalidades
 
-```bash
-$ npm install
-```
+### Autenticação:
 
-## Running the app
+- Os usuários devem poder se cadastrar fornecendo um nome de usuário, um endereço de e-mail e uma senha.
+- Os usuários registrados devem poder fazer login no sistema.
 
-```bash
-# development
-$ npm run start
+### Gerenciamento de Tarefas:
 
-# watch mode
-$ npm run start:dev
+- Os usuários autenticados devem poder criar uma nova tarefa especificando o título, a descrição, a data de conclusão e o status.
+- Os usuários devem poder visualizar uma lista de suas próprias tarefas.
+- Os usuários devem poder atualizar as informações de uma tarefa existente, como título, descrição, data de conclusão e status.
+- Os usuários devem poder excluir uma tarefa existente.
 
-# production mode
-$ npm run start:prod
-```
+### Filtragem de Tarefas:
 
-## Test
+- Os usuários devem poder filtrar suas tarefas com base no status, como exibir apenas tarefas concluídas ou tarefas em andamento.
+
+## Rodando os testes
 
 ```bash
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
 
-## Support
+## Rodando a aplicação
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Obs: Para rodar a aplicação é necessário ter o Docker e o Docker compose instalados na máquina.
 
-## Stay in touch
+Passo a passo:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. Renomear o arquivo `.env.sample` para `.env`.
+2. Alterar a variável `PORT` caso necessário.
+3. Alterar a porta do Postgres no arquivo `docker-compose.yml` caso necessário. Caso altere a porta, altere a porta na variável do `DATABASE_URL` no `.env` também.
+4. Rodar o seguinte comando:
 
-## License
+```bash
+# Start
+$ docker-compose up -d
 
-Nest is [MIT licensed](LICENSE).
+# Stop
+$ docker-compose down
+```
+
+Após rodar o comando acima, a aplicação será inicializada na porta definida no `.env`
+
+## Documentação
+
+Para a documentação, foi utilizado módulo `@nestjs/swagger`, que gera a documentação dos endpoits através de decorators adicionados no código.
+Essa documentação pode ser visualizada em `localhost:PORT/api`, e contém a documentação de todos os endpoints desenvolvidos, bem como os status code retornardos e exemplos dos bodys das requisições.
