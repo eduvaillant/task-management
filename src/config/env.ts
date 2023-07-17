@@ -3,4 +3,5 @@ export default {
   jwtExpirationInSeconds:
     parseInt(process.env.JWT_EXPIRATION_IN_SECONDS, 10) || 3600,
   hashSalt: parseInt(process.env.HASH_SALT, 10) || 10,
+  port: parseInt(process.env.PORT, 10) || 3000,
 }
