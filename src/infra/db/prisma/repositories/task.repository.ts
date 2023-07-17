@@ -53,8 +53,10 @@ export class PrismaTaskRepository implements TaskRepository {
     await this.prismaHelper.task.delete({ where: { id } })
   }
 
-  async listByStatus(status: TaskStatus): Promise<Task[]> {
-    const dbTasks = await this.prismaHelper.task.findMany({ where: { status } })
+  async listByStatus(status: TaskStatus, userId: string): Promise<Task[]> {
+    const dbTasks = await this.prismaHelper.task.findMany({
+      where: { status, userId },
+    })
     return dbTasks.map((dbTask) => Task.fromDb(dbTask as TaskProps))
   }
 }

@@ -17,7 +17,7 @@ describe('ListTasksUseCase', () => {
       'any_title',
       'any_description',
       new Date(),
-      TaskStatus.CREATED,
+      TaskStatus.PENDING,
       randomUUID(),
     )
     mockedTaskRepository.list.mockResolvedValue([fakeTask])
@@ -42,6 +42,7 @@ describe('ListTasksUseCase', () => {
     expect(mockedTaskRepository.listByStatus).toHaveBeenCalledTimes(1)
     expect(mockedTaskRepository.listByStatus).toHaveBeenCalledWith(
       command.status,
+      command.userId,
     )
   })
 

@@ -34,7 +34,7 @@ model Task {
 }
 
 enum TaskStatus {
-  CREATED
+  PENDING
   IN_PROGRESS
   COMPLETED
 }

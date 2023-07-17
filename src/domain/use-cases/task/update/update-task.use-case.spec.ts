@@ -20,7 +20,7 @@ describe('UpdateTaskUseCase', () => {
       'any_title',
       'any_description',
       new Date(),
-      TaskStatus.CREATED,
+      TaskStatus.PENDING,
       userId,
     )
     mockedTaskRepository.findById.mockResolvedValue(fakeTask)

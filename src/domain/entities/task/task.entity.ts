@@ -49,7 +49,7 @@ export class Task {
       title,
       description: description ?? '',
       dueDate,
-      status: status ?? TaskStatus.CREATED,
+      status: status ?? TaskStatus.PENDING,
       userId,
       createdAt,
       updatedAt,
