@@ -19,13 +19,15 @@ import {
   CreateTaskDto,
   FilterTaskByStatusDto,
   UpdateTaskDto,
-} from '../dtos'
-import { CreateTaskUseCase } from 'src/domain/use-cases/task/create/create-task.use-case'
-import { ListTasksUseCase } from 'src/domain/use-cases/task/list/list-tasks.use-case'
-import { UpdateTaskUseCase } from 'src/domain/use-cases'
-import { DeleteTaskUseCase } from 'src/domain/use-cases/task/delete/delete-task.use-case'
-import { AuthGuard } from 'src/common/guards'
-import { ValidatePayloadExistsPipe } from 'src/common/pipes'
+} from '../../dtos'
+import {
+  CreateTaskUseCase,
+  DeleteTaskUseCase,
+  ListTasksUseCase,
+  UpdateTaskUseCase,
+} from '../../../../domain/use-cases'
+import { AuthGuard } from '../../../../common/guards'
+import { ValidatePayloadExistsPipe } from '../../../../common/pipes'
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
