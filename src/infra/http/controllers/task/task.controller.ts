@@ -26,8 +26,8 @@ import {
   ListTasksUseCase,
   UpdateTaskUseCase,
 } from '../../../../domain/use-cases'
-import { AuthGuard } from '../../../../common/guards'
-import { ValidatePayloadExistsPipe } from '../../../../common/pipes'
+import { AuthGuard } from '../../guards'
+import { ValidatePayloadExistsPipe } from '../../pipes'
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
