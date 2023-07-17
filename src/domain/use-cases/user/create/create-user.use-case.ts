@@ -1,7 +1,7 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common'
 
-import { User } from '../../../entities'
-import { Hasher, UserRepository } from '../../../interfaces'
+import { User } from '@/domain/entities'
+import { Hasher, UserRepository } from '@/domain/interfaces'
 import {
   CreateUserCommand,
   CreateUserOutput,

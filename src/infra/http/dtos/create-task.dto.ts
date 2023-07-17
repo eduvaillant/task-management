@@ -7,7 +7,7 @@ import {
 } from 'class-validator'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
-import { TaskStatus } from 'src/domain/enums'
+import { TaskStatus } from '@/domain/enums'
 
 export class CreateTaskDto {
   @ApiProperty({ example: 'A title' })

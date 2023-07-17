@@ -1,6 +1,7 @@
-import { Task } from './task.entity'
-import { TaskStatus } from '../../../domain/enums'
 import { randomUUID } from 'crypto'
+
+import { Task } from './task.entity'
+import { TaskStatus } from '@/domain/enums'
 
 describe('Task', () => {
   it('should instantiate a Task when call newTask with valid params', () => {

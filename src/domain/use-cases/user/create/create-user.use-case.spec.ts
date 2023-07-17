@@ -2,8 +2,8 @@ import { MockProxy, mock } from 'jest-mock-extended'
 import { ConflictException } from '@nestjs/common'
 
 import { CreateUserUseCase } from './create-user.use-case'
-import { User } from '../../../entities'
-import { Hasher, UserRepository } from '../../../interfaces'
+import { User } from '@/domain/entities'
+import { Hasher, UserRepository } from '@/domain/interfaces'
 
 describe('CreateUserUseCase', () => {
   let sut: CreateUserUseCase

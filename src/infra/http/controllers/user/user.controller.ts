@@ -9,14 +9,13 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger'
 
-import { CreateUserUseCase } from '../../../domain/use-cases/user/create/create-user.use-case'
 import {
   CreateUserDto,
   CreateUserOutputDto,
   LoginDto,
   LoginOutputDto,
-} from '../dtos'
-import { LoginUseCase } from 'src/domain/use-cases/user/login/login.use-case'
+} from '@/infra/http/dtos'
+import { CreateUserUseCase, LoginUseCase } from '@/domain/use-cases'
 
 @Controller()
 export class UserController {

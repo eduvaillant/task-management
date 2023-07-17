@@ -13,19 +13,6 @@ import {
   UseGuards,
   UsePipes,
 } from '@nestjs/common'
-
-import {
-  CreateTaksOutputDto,
-  CreateTaskDto,
-  FilterTaskByStatusDto,
-  UpdateTaskDto,
-} from '../dtos'
-import { CreateTaskUseCase } from 'src/domain/use-cases/task/create/create-task.use-case'
-import { ListTasksUseCase } from 'src/domain/use-cases/task/list/list-tasks.use-case'
-import { UpdateTaskUseCase } from 'src/domain/use-cases'
-import { DeleteTaskUseCase } from 'src/domain/use-cases/task/delete/delete-task.use-case'
-import { AuthGuard } from 'src/common/guards'
-import { ValidatePayloadExistsPipe } from 'src/common/pipes'
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -38,6 +25,21 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger'
+
+import {
+  CreateTaksOutputDto,
+  CreateTaskDto,
+  FilterTaskByStatusDto,
+  UpdateTaskDto,
+} from '@/infra/http/dtos'
+import { AuthGuard } from '@/infra/http/guards'
+import { ValidatePayloadExistsPipe } from '@/infra/http/pipes'
+import {
+  CreateTaskUseCase,
+  DeleteTaskUseCase,
+  ListTasksUseCase,
+  UpdateTaskUseCase,
+} from '@/domain/use-cases'
 
 @Controller('tasks')
 @UseGuards(AuthGuard)

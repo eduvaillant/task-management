@@ -16,7 +16,7 @@ import {
 } from './domain/use-cases'
 import { BcryptAdapter } from './infra/adapters'
 import { TaskController, UserController } from './infra/http/controllers'
-import env from './common/config/env'
+import env from './config/env'
 import { DeleteTaskUseCase } from './domain/use-cases/task/delete/delete-task.use-case'
 
 @Module({

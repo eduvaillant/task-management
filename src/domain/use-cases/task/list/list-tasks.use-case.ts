@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common'
 
 import { ListTasksCommand, ListTasksOutput } from './list-tasks.dto'
-import { TaskRepository } from '../../../interfaces'
+import { TaskRepository } from '@/domain/interfaces'
 
 @Injectable()
 export class ListTasksUseCase {

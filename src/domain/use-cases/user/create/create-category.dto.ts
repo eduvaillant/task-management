@@ -1,4 +1,4 @@
-import { User } from 'src/domain/entities'
+import { User } from '@/domain/entities'
 
 export type CreateUserCommand = {
   username: string

@@ -1,5 +1,5 @@
-import { Task } from '../../../entities'
-import { TaskStatus } from '../../../enums'
+import { Task } from '@/domain/entities'
+import { TaskStatus } from '@/domain/enums'
 
 export type ListTasksCommand = {
   userId: string

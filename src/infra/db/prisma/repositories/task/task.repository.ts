@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 
-import { Task, TaskProps } from 'src/domain/entities'
-import { TaskRepository } from 'src/domain/interfaces'
-import { TaskStatus } from 'src/domain/enums'
-import { PrismaHelper } from '../helpers'
+import { PrismaHelper } from '@/infra/db/prisma/helpers'
+import { Task, TaskProps } from '@/domain/entities'
+import { TaskRepository } from '@/domain/interfaces'
+import { TaskStatus } from '@/domain/enums'
 
 @Injectable()
 export class PrismaTaskRepository implements TaskRepository {

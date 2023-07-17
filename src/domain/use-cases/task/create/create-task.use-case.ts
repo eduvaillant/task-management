@@ -1,8 +1,8 @@
 import { Inject } from '@nestjs/common'
 
 import { CreateTaskCommand, CreateTaskOutput } from './create-task.dto'
-import { TaskRepository } from '../../../interfaces'
-import { Task } from '../../../entities/task/task.entity'
+import { TaskRepository } from '@/domain/interfaces'
+import { Task } from '@/domain/entities'
 
 export class CreateTaskUseCase {
   constructor(

@@ -1,5 +1,5 @@
-import { Task } from 'src/domain/entities/task/task.entity'
-import { TaskStatus } from 'src/domain/enums'
+import { Task } from '@/domain/entities/task/task.entity'
+import { TaskStatus } from '@/domain/enums'
 
 export interface TaskRepository {
   create(task: Task): Promise<void>
